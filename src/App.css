@@ -31,10 +31,16 @@
 }
 
 .notelist {
-  width: 25%;
+  width: 200px;
   margin-left: 10%
 }
 
 .ui.menu {
   background-color: rgb(192, 222, 248)
+}
+
+.ui.container {
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 5%
 }

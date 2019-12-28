@@ -7,7 +7,6 @@ class NoteList extends Component {
     render() {
         return (
             <div className="notelist">
-                List of User's notes
                 <Segment.Group>
                     <Segment><Note /></Segment>
                     <Segment><Note /></Segment>
