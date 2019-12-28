@@ -1,14 +1,20 @@
 import React, {Component} from 'react';
+import { Button, Form } from 'semantic-ui-react'
 
 class NoteForm extends Component {
 
     render() {
         return (
-            <form>
-                <input type="text" name="title" placeholder="Note Title" />
-                <textarea name="content" placeholder="Your Note" />
-                <input type="submit" />
-            </form>
+            <Form>
+                <h2>Add Note</h2>
+                <Form.Field>
+                    <input type="text" name="title" placeholder="Note Title" />
+                </Form.Field>
+                <Form.Field>
+                    <textarea name="content" placeholder="Your Note" />
+                </Form.Field>
+                <Button type="submit">Create Note</Button>
+            </Form>
         )
     }
 }

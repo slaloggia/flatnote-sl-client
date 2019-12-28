@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
+import { Segment } from 'semantic-ui-react'
 import Note from '../components/Note'
 
 class NoteList extends Component {
 
     render() {
         return (
-            <div>
+            <div className="notelist">
                 List of User's notes
-                <ul>
-                    <li><Note/></li>
-                    <li><Note /></li>
-                    <li><Note /></li>
-                </ul>
+                <Segment.Group>
+                    <Segment><Note /></Segment>
+                    <Segment><Note /></Segment>
+                    <Segment><Note /></Segment>
+                </Segment.Group>
             </div>
         )
     }
