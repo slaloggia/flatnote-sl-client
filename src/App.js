@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import {Container} from 'semantic-ui-react';
@@ -10,23 +11,29 @@ import NoteShow from './containers/NoteShow';
 import NoteForm from './components/NoteForm';
 
 
-function App() {
-  return (
-    <div className="App">
-      <NavBar />
-      <Container>
-      <Router>
-        <div>
-          <Route exact path="/" component={Welcome} />
-          <Route path="/login" component={LogIn} />
-          <Route path="/dashboard" component={NoteList} />
-          <Route path="/note/1" component={NoteShow} />
-          <Route path="/note/new" component={NoteForm}/>
-        </div>
-      </Router>
-      </Container>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <NavBar />
+        <Container className="">
+        <Router>
+          <div>
+            <Route exact path="/" component={Welcome} />
+            <Route path="/login" component={LogIn} />
+            <Route path="/dashboard" component={NoteList} />
+            <Route path="/note/1" component={NoteShow} />
+            <Route path="/note/new" component={NoteForm}/>
+          </div>
+        </Router>
+        </Container>
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = ({currentuser, loading}) => ({currentuser, loading})
+  
+
+
+export default connect(mapStateToProps)(App);

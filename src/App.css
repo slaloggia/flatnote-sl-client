@@ -32,7 +32,9 @@
 
 .notelist {
   width: 200px;
-  margin-left: 10%
+  margin-left: 10%;
+  max-height: 400px;
+  overflow: scroll
 }
 
 .ui.menu {
