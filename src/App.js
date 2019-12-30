@@ -32,7 +32,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({currentuser, loading}) => ({currentuser, loading})
+const mapStateToProps = ({currentuser, loading, notes}) => ({currentuser, loading, notes})
   
 
 
