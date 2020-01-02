@@ -9,11 +9,13 @@ class NavBar extends React.Component {
         return (
             <Menu>
                 <Menu.Item header>FlatNote</Menu.Item>
+                <Menu.Item onClick={() => history.push('/note/new')}>New Note</Menu.Item>
+                <Menu.Menu position='right'>
                 {this.props.currentuser.id ?
                 <Menu.Item onClick={() => this.props.logout()}>Log Out</Menu.Item> :
                 <Menu.Item href="/login">Log In</Menu.Item>
                 }
-                <Menu.Item onClick={() => history.push('/note/new')}>New Note</Menu.Item>
+                </Menu.Menu>
             </Menu>
         )
     }

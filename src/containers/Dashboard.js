@@ -26,11 +26,15 @@ class Dashboard extends Component {
        return uniqueTags.map(tag => <Button basic size='mini' key={tag.id} id={tag.id}>{tag.content}</Button>)
     }
 
-    // filterNotes = (id) => {
-    //     console.log(id)
-    //     const filteredNotes = this.props.notes.filter(note => note.tags.includes(findTag))
-    //     // console.log(filteredNotes)
-    // }
+    filterNotes = (id) => {
+        // console.log(id)
+        const filteredNotes = this.props.notes.filter(note => note.tags.some(tag => tag.id === parseInt(id)))
+        this.setState({filteredNotes: filteredNotes})
+    }
+
+    resetFilter = () => {
+        this.setState({filteredNotes: this.props.notes})
+    }
 
 
     
@@ -49,7 +53,8 @@ class Dashboard extends Component {
                     <Route exact path={`${this.props.match.url}/note/:noteId/edit`} render={routerProps => <EditForm  {...routerProps} note={this.state.selectedNote} />} />
                 </Grid.Column>
                 <Grid.Column width={4}>
-                    <h3 onClick={() => this.listTags()}>Tags</h3>
+                    <h3 onClick={() => this.listTags()}>Filter By Tag</h3>
+                    <Button basic size='mini' onClick={this.resetFilter}>All Notes</Button>
                     <div className='tag-list' onClick= {(event) => this.filterNotes(event.target.id)}>{this.listTags()}</div>
                 </Grid.Column>
 

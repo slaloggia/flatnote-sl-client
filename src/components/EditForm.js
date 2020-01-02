@@ -8,7 +8,7 @@ class EditForm extends Component {
     state= {
         title: this.props.note.title,
         content: this.props.note.content,
-        tags: '' 
+        tags: [] 
     }
 
     handleChange(event) {
@@ -32,7 +32,7 @@ class EditForm extends Component {
         this.setState({
             title: '',
             content: '',
-            tags: ''
+            tags: []
         })
     }
 

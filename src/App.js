@@ -21,7 +21,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Welcome} />
               <Route path="/login" component={LogIn} />
-              {this.props.currentuser.id ?
+              {this.props.currentuser.id ? 
               <Route path="/dashboard" render={routerProps => <Dashboard {...routerProps} />} /> : history.push('/login')
               }
               {this.props.currentuser.id ?
