@@ -9,6 +9,9 @@ class NavBar extends React.Component {
         return (
             <Menu>
                 <Menu.Item header>FlatNote</Menu.Item>
+                {this.props.currentuser.id ? null :
+                <Menu.Item onClick={() => history.push('/signup')} >Sign Up</Menu.Item> 
+                }
                 <Menu.Item onClick={() => history.push('/note/new')}>New Note</Menu.Item>
                 <Menu.Menu position='right'>
                 {this.props.currentuser.id ?

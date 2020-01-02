@@ -20,13 +20,11 @@ class App extends Component {
           <Container>
             <Switch>
               <Route exact path="/" component={Welcome} />
+              <Route exact path="/signup" component={LogIn}/>
               <Route path="/login" component={LogIn} />
-              {this.props.currentuser.id ? 
-              <Route path="/dashboard" render={routerProps => <Dashboard {...routerProps} />} /> : history.push('/login')
-              }
-              {this.props.currentuser.id ?
-              <Route path="/note/new" render={routerProps => <NewNoteForm {...routerProps} />}/> : history.push('/login')
-              }
+              <Route path="/dashboard" render={routerProps => (this.props.currentuser.id ? <Dashboard {...routerProps} /> : history.push('/login'))} /> 
+              <Route path="/note/new" render={routerProps => (this.props.currentuser.id ? <NewNoteForm {...routerProps} /> : history.push('/login'))}/> 
+              
             </Switch>
           </Container>
         </Router>
