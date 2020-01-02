@@ -1,17 +1,27 @@
-
-
-export default function manageNotes(state= {
+const initialState = {
     currentuser: {},
     notes:[],
     loading: false
-}, action) {
+}
+
+export default function manageNotes(state= initialState, action) {
     switch (action.type) {
         case 'LOADING_USER':
             return {...state, loading: true}
         case 'LOG_IN':
             return {currentuser: action.userinfo.currentuser, notes: action.userinfo.notes, loading: false}
+        case 'LOG_OUT':
+            return initialState
         case 'ADD_NOTE':
             return {...state, notes: [...state.notes, action.newNote]}
+        case 'DELETE_NOTE':
+            const notes = state.notes.filter(note => note.id !== action.note.id)
+            return {...state, notes: notes}
+        case 'UPDATE_NOTE':
+            const newNote = action.note
+            const index = state.notes.findIndex(note => note.id === newNote.id)
+            const updatedNotes = [...state.notes.slice(0, index), newNote, ...state.notes.slice(index+1)]
+            return {...state, notes: updatedNotes}
         default:
         return state
     }

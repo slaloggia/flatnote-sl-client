@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { login } from '../actions/userActions'
 
 class LogIn extends Component {
@@ -15,9 +15,7 @@ class LogIn extends Component {
     handleSubmit(event) {
         event.preventDefault()
         const username = this.state.username
-        this.props.login(username)
-
-
+        this.props.login(username, this.props.history)
     }
 
     render() {

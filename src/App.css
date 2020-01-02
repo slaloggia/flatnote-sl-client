@@ -23,18 +23,23 @@
   color: #61dafb;
 }
 
-.form {
-  width: 25%;
-  margin-left: 37%;
-  margin-top: 5%
-  
+
+#new-form {
+  width: 50%;
+  margin-left: 25%
+}
+
+#edit-form {
+  width: 90%;
+  margin-left: 10%
 }
 
 .notelist {
-  width: 200px;
+  width: 100%;
   margin-left: 10%;
   max-height: 400px;
-  overflow: scroll
+  overflow-x: hidden;
+  overflow-y: auto
 }
 
 
@@ -46,4 +51,17 @@
   width: 90%;
   margin-left: 5%;
   margin-top: 5%
+}
+
+.note-detail {
+  border: 1px solid darkgrey;
+  width: 90%;
+  margin-left: 5%;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.ui.segment {
+  max-height: 150px;
+  overflow: hidden
 }

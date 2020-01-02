@@ -3,11 +3,12 @@ import { connect } from 'react-redux'
 import { Button, Form } from 'semantic-ui-react'
 import { addNote } from '../actions/noteActions'
 
-class NoteForm extends Component {
+class NewNoteForm extends Component {
 
     state= {
         title: '',
-        content: ''
+        content: '',
+        user_id: this.props.currentuser.id 
     }
 
     handleChange(event) {
@@ -30,7 +31,7 @@ class NoteForm extends Component {
 
     render() {
         return (
-            <Form onSubmit={(event) => this.handleSubmit(event)}>
+            <Form id="new-form" onSubmit={(event) => this.handleSubmit(event)}>
                 <h2>Add Note</h2>
                 <Form.Field>
                     <input type="text" name="title" value={this.state.title} placeholder="Note Title" onChange={(event) => this.handleChange(event)}/>
@@ -48,4 +49,6 @@ function mapDispatchToProps(dispatch) {
     return {addNote: (note) => dispatch(addNote(note))}
 }
 
-export default connect(null, mapDispatchToProps)(NoteForm)
+const mapStateToProps = ({currentuser}) => ({currentuser})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewNoteForm)
