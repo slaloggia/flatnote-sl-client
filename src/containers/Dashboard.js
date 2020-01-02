@@ -13,7 +13,6 @@ class Dashboard extends Component {
 
     state= {
         filteredNotes: this.props.notes,
-        selectedNote: {}
     }
 
     selectNote = (note) => {
@@ -49,7 +48,7 @@ class Dashboard extends Component {
                     ) : null }
                 </Grid.Column>
                 <Grid.Column width={8}>
-                    <Route exact path={`${this.props.match.url}/note/:noteId`} render={routerProps => <NoteDetail {...routerProps} deleteNote={this.props.deleteNote} note={this.state.selectedNote}/>} />
+                    <Route exact path={`${this.props.match.url}/note/:noteId`} render={routerProps => <NoteDetail {...routerProps} deleteNote={this.props.deleteNote} notes={this.props.notes}/>} />
                     <Route exact path={`${this.props.match.url}/note/:noteId/edit`} render={routerProps => <EditForm  {...routerProps} note={this.state.selectedNote} />} />
                 </Grid.Column>
                 <Grid.Column width={4}>

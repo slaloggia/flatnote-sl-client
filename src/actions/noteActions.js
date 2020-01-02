@@ -47,6 +47,6 @@ export function editNote(note) {
         fetch(`http://localhost:3000/notes/${note.noteId}`, configObj)
         .then(resp => resp.json())
         .then(note => dispatch({type: 'UPDATE_NOTE', note}))
-        .then(() => history.push(`/dashboard/note/${note.id}`))
+        .then(() => history.push(`/dashboard/note/${note.noteId}`))
     }
 }
