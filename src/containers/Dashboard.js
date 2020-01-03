@@ -22,11 +22,10 @@ class Dashboard extends Component {
     listTags() {
        const tags = this.props.notes.map(note => note.tags).flat()
        const uniqueTags = tags.filter((tag, i, arr) => arr.findIndex(t => t.id === tag.id) === i)
-       return uniqueTags.map(tag => <Button basic size='mini' key={tag.id} id={tag.id}>{tag.content}</Button>)
+       return uniqueTags.map(tag => <Button basic key={tag.id} id={tag.id}>{tag.content}</Button>)
     }
 
     filterNotes = (id) => {
-        // console.log(id)
         const filteredNotes = this.props.notes.filter(note => note.tags.some(tag => tag.id === parseInt(id)))
         this.setState({filteredNotes: filteredNotes})
     }
@@ -53,7 +52,7 @@ class Dashboard extends Component {
                 </Grid.Column>
                 <Grid.Column width={4}>
                     <h3 onClick={() => this.listTags()}>Filter By Tag</h3>
-                    <Button basic size='mini' onClick={this.resetFilter}>All Notes</Button>
+                    <Button basic onClick={this.resetFilter}>All Notes</Button>
                     <div className='tag-list' onClick= {(event) => this.filterNotes(event.target.id)}>{this.listTags()}</div>
                 </Grid.Column>
 

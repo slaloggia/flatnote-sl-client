@@ -7,7 +7,7 @@ import { logout } from '../actions/userActions'
 class NavBar extends React.Component {
     render() {
         return (
-            <Menu>
+            <Menu inverted size='massive'>
                 <Menu.Item header>FlatNote</Menu.Item>
                 {this.props.currentuser.id ? null :
                 <Menu.Item onClick={() => history.push('/signup')} >Sign Up</Menu.Item> 

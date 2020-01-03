@@ -6,7 +6,7 @@ import history from '../history'
 class NoteList extends Component {
 
     listNotes =() => {
-       return this.props.notes.map(note => <Segment onClick={() => this.handleClick(note)} key={note.id}><Note note={note} /></Segment>)
+       return this.props.notes.map(note => <Segment size='big' onClick={() => this.handleClick(note)} key={note.id}><Note note={note} /></Segment>)
     }
 
     handleClick = (note) => {

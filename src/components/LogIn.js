@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import { login } from '../actions/userActions'
 import { signup } from '../actions/userActions'
+import { Form } from 'semantic-ui-react'
 
 class LogIn extends Component {
 
@@ -25,11 +26,11 @@ class LogIn extends Component {
 
     render() {
         return (
-            <form onSubmit={(event) => this.handleSubmit(event)}>
+            <Form onSubmit={(event) => this.handleSubmit(event)}>
                 {this.props.match.path === "/login" ? <h2>Log In</h2> : <h2>Create Account</h2> }
                 <input type="text" name="username" placeholder="Enter username" value={this.state.username} onChange={(event) => this.handleChange(event)}/>
                 <input type="submit" />
-            </form>
+            </Form>
         )
     }
 }
