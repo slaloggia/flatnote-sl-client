@@ -24,10 +24,12 @@ class EditForm extends Component {
         const note = {
             title: this.state.title,
             content: this.state.content,
-            tags: this.state.tags.split(', '), 
+            tags: [], 
             noteId: this.props.note.id
         }
-        console.log(note)
+        if (this.state.tags.length > 0) {
+            note.tags = this.state.tags.split(', ')
+        }
         this.props.editNote(note)
         this.setState({
             title: '',
