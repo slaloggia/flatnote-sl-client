@@ -22,6 +22,7 @@ export function addNote(note) {
 }
 
 export function deleteNote(noteId) {
+    history.push('/delete')
     return (dispatch) => {
         fetch(`http://localhost:3000/notes/${noteId}`, {method: 'DELETE'})
         .then(resp => resp.json())
