@@ -1,15 +1,28 @@
+# FlatNote 
 
+## Description
+Flatnote is an app that lets users create and maintain a list of notes. After creating a note, users can edit, add tags, and delete. Notes can be filtered by tags.
 
-Run:
+This was built as part of the Flatiron School Software Engineering Immersive Bootcamp.
 
+## Backend
+Before starting this front-end application, clone the [back-end app](https://github.com/slaloggia/flatnote-sl-backend), and follow the setup instructions.
+
+## Run:
+Once the backend server is running, run the following commands: 
+
+```
 npm install
-npm start (any port OTHER THAN 3000)
+npm start
+```
+
+## Using the app
+
+Simply log in with whatever username you choose. This project focused on React & Redux and does not authenticate users,
+however if you have logged in with the same username previously, your information will persist.
+
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
-TODO
-- Edit functionality
-- Dispatching new note/edit to store
-- Flesh out this README

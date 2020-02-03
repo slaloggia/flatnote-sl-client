@@ -31,9 +31,6 @@ class Dashboard extends Component {
         this.setState({tagId: null})
     }
 
-
-    
-
     render() {
         return (
             <div>
