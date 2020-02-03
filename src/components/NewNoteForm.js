@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Button, Form } from 'semantic-ui-react'
-import { addNote } from '../actions/noteActions'
+import { addNote, filterNotes } from '../actions/noteActions'
 
 class NewNoteForm extends Component {
 
@@ -23,6 +23,7 @@ class NewNoteForm extends Component {
         event.preventDefault()
         const note = this.state
         this.props.addNote(note)
+        this.props.filterNotes(0)
         this.setState({
             title: '',
             content: ''
@@ -46,7 +47,10 @@ class NewNoteForm extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-    return {addNote: (note) => dispatch(addNote(note))}
+    return {
+        addNote: (note) => dispatch(addNote(note)),
+        filterNotes: (id) => dispatch(filterNotes(id))
+    }
 }
 
 const mapStateToProps = ({currentuser}) => ({currentuser})

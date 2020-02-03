@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Button, Form } from 'semantic-ui-react'
-import { editNote } from '../actions/noteActions'
+import { editNote, filterNotes } from '../actions/noteActions'
 
 class EditForm extends Component {
 
     state= {
-        title: this.props.note.title,
-        content: this.props.note.content,
+        title: this.props.selectedNote.title,
+        content: this.props.selectedNote.content,
         tags: [] 
     }
 
@@ -25,17 +25,20 @@ class EditForm extends Component {
             title: this.state.title,
             content: this.state.content,
             tags: [], 
-            noteId: this.props.note.id
+            noteId: this.props.selectedNote.id
         }
         if (this.state.tags.length > 0) {
             note.tags = this.state.tags.split(', ')
         }
         this.props.editNote(note)
+        this.props.filterNotes(0)
+
         this.setState({
             title: '',
             content: '',
             tags: []
         })
+
     }
 
     render() {
@@ -60,8 +63,11 @@ class EditForm extends Component {
 function mapDispatchToProps(dispatch) {
     return {
         editNote: (note) => dispatch(editNote(note)),
+        filterNotes: (id) => dispatch(filterNotes(id)) 
 
     }
 }
 
-export default connect(null, mapDispatchToProps)(EditForm)
+const mapStateToProps = ({selectedNote}) => ({selectedNote})
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditForm)

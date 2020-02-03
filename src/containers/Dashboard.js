@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { deleteNote } from '../actions/noteActions'
+import { deleteNote, selectNote, filterNotes } from '../actions/noteActions'
 import { Button } from 'semantic-ui-react'
 import NoteList from './NoteList'
 import NoteDetail from '../components/NoteDetail'
@@ -12,11 +12,7 @@ import { Grid } from 'semantic-ui-react'
 class Dashboard extends Component {
 
     state= {
-        filteredNotes: this.props.notes,
-    }
-
-    selectNote = (note) => {
-        this.setState({selectedNote: note})
+        tagId: null
     }
 
     listTags() {
@@ -25,13 +21,14 @@ class Dashboard extends Component {
        return uniqueTags.map(tag => <Button basic key={tag.id} id={tag.id}>{tag.content}</Button>)
     }
 
-    filterNotes = (id) => {
-        const filteredNotes = this.props.notes.filter(note => note.tags.some(tag => tag.id === parseInt(id)))
-        this.setState({filteredNotes: filteredNotes})
+
+    handleTagSelect = (event) => {
+        this.setState({tagId: parseInt(event.target.id)})
+        this.props.filterNotes(parseInt(event.target.id))
     }
 
     resetFilter = () => {
-        this.setState({filteredNotes: this.props.notes})
+        this.setState({tagId: null})
     }
 
 
@@ -43,17 +40,17 @@ class Dashboard extends Component {
                 <Grid>
                 <Grid.Column width={4}>
                     {this.props.notes && this.props.notes.length > 0 ? (
-                    <NoteList notes={this.state.filteredNotes} selectNote={this.selectNote}/>
+                    <NoteList notes={this.state.tagId ? this.props.filteredNotes : this.props.notes} selectNote={this.props.selectNote}/>
                     ) : null }
                 </Grid.Column>
                 <Grid.Column width={8}>
-                    <Route exact path={`${this.props.match.url}/note/:noteId`} render={routerProps => <NoteDetail {...routerProps} deleteNote={this.props.deleteNote} notes={this.props.notes}/>} />
-                    <Route exact path={`${this.props.match.url}/note/:noteId/edit`} render={routerProps => <EditForm  {...routerProps} note={this.state.selectedNote} />} />
+                    <Route exact path={`${this.props.match.url}/note/:noteId`} render={routerProps => <NoteDetail {...routerProps} deleteNote={this.props.deleteNote} myNote={this.props.selectedNote}/>} />
+                    <Route exact path={`${this.props.match.url}/note/:noteId/edit`} render={routerProps => <EditForm  {...routerProps} note={this.props.selectedNote} />} />
                 </Grid.Column>
                 <Grid.Column width={4}>
-                    <h3 onClick={() => this.listTags()}>Filter By Tag</h3>
+                    <h3>Filter By Tag</h3>
                     <Button basic onClick={this.resetFilter}>All Notes</Button>
-                    <div className='tag-list' onClick= {(event) => this.filterNotes(event.target.id)}>{this.listTags()}</div>
+                    <div className='tag-list' onClick= {this.handleTagSelect}>{this.listTags()}</div>
                 </Grid.Column>
 
                 </Grid>
@@ -65,10 +62,14 @@ class Dashboard extends Component {
 
 
 function mapDispatchToProps(dispatch) {
-    return {deleteNote: (noteId) => dispatch(deleteNote(noteId))}
+    return {
+        deleteNote: (noteId) => dispatch(deleteNote(noteId)),
+        selectNote: (note) => dispatch(selectNote(note)),
+        filterNotes: (id) => dispatch(filterNotes(id))
+    }
 }
 
-const mapStateToProps = ({notes}) => ({notes})
+const mapStateToProps = ({notes, selectedNote, filteredNotes}) => ({notes, selectedNote, filteredNotes})
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

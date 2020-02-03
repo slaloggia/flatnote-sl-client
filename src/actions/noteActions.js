@@ -16,8 +16,22 @@ export function addNote(note) {
         }
         fetch('http://localhost:3000/notes', configObj)
         .then(resp => resp.json())
-        .then(newNote => dispatch({type: "ADD_NOTE", newNote}))
-        .then(()=> history.push('/dashboard'))
+        .then(newNote => (
+            dispatch({type: "ADD_NOTE", newNote}),
+            history.push(`/dashboard/note/${newNote.id}`)
+        ))
+    }
+}
+
+export function selectNote(note) {
+    return (dispatch) => {
+        dispatch({type: 'SELECT_NOTE', note})
+    }
+}
+
+export function filterNotes(id) {
+    return (dispatch) => {
+        dispatch({type: 'FILTER_NOTES', id})
     }
 }
 
