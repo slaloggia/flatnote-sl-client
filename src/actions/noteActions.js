@@ -16,10 +16,8 @@ export function addNote(note) {
         }
         fetch('http://localhost:3000/notes', configObj)
         .then(resp => resp.json())
-        .then(newNote => (
-            dispatch({type: "ADD_NOTE", newNote}),
-            history.push(`/dashboard/note/${newNote.id}`)
-        ))
+        .then(newNote => (dispatch({type: "ADD_NOTE", newNote})))
+        .then((newNote) => history.push(`/dashboard/note/${newNote.id}`))
     }
 }
 
@@ -54,9 +52,11 @@ export function editNote(note) {
                 'Accept': 'application/json'
             },
             body: JSON.stringify({
-                title: note.title,
-                content: note.content,
-                tags: note.tags
+                note: {
+                    title: note.title,
+                    content: note.content,
+                    tags: note.tags
+                }
             })
         }
         fetch(`http://localhost:3000/notes/${note.noteId}`, configObj)
