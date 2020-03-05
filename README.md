@@ -21,6 +21,8 @@ npm start
 Simply log in with whatever username you choose. This project focused on React & Redux and does not authenticate users,
 however if you have logged in with the same username previously, your information will persist.
 
+![editnotescreenshot](https://user-images.githubusercontent.com/54509406/76034339-3dd37e80-5f04-11ea-8780-4496f573b51f.jpg)
+
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
